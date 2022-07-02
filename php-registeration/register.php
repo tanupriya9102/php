@@ -12,7 +12,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
   $empphone=$_POST["pno"];
   $empdept=$_POST["dept"];
   $empndesig=$_POST["desig"];
-  $empdob=$_POST["dob"];
+  
 
 
   $sql = "Select * from user_details where emp_no = '$empno'";
@@ -20,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
   $num = mysqli_num_rows($result);
 
   if($num == 0 ){
-    $sql="INSERT INTO `user_details` (`emp_no`,`name`,`email`,`department`,`designation`,`dob`,`phone_no`) VALUES('$empno','$empname','$empemail','$empphone','$empdept', '$empndesig','$empdob')";
+    $sql="INSERT INTO `user_details` (`emp_no`,`name`,`email`,`department`,`designation`,`phone_no`) VALUES('$empno','$empname','$empemail','$empdept', '$empndesig','$empphone')";
     $result = mysqli_query($conn, $sql);
 	
 			if ($result) {
@@ -44,13 +44,10 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <style>
-        form{
-            margin:50px;
-        }
-    
-    </style>
+  
+
 </head>
 <body>
 <?php
@@ -68,8 +65,10 @@ if($exists) {
 }
 ?>
 
+<div class="container">
+
 <form action="register.php" method="post">
-<h1 style="text-align:center;">REGISTER HERE</h1>
+<h1 style="text-align:center; text-decoration:underline;">REGISTER HERE</h1>
     <div class="container">
    <div class="form-group col-md-4">
     <label for="empno">Employee Number:</label>
@@ -97,10 +96,7 @@ if($exists) {
     <input type="text" class="form-control" name="desig" id="desig" placeholder="">
   </div>
 
-  <div class="form-group col-md-4">
-    <label for="dob">Date Of Birth:</label>
-    <input type="date" class="form-control" name="dob" id="dob" placeholder="">
-  </div>
+  
 
   <div class="form-group col-md-4">
     <label for="pno">Phone Number:</label>
@@ -122,7 +118,7 @@ if($exists) {
   <button type="submit" class="btn btn-primary">Sign in</button>
 </form>
 
-    </div>
+</div>
 
 
     
